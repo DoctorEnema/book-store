@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body.rtl{
+    direction: rtl;
+}
+
+
 table {
     background-color: lightslategrey;
 }

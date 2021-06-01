@@ -1,12 +1,8 @@
 'use strict'
 
 function renderBooks() {
-    var strHTML = `
-    <th>ID</th>
-    <th>Title</th>
-    <th>Price</th>
-    <th colspan="3">Actions</th>`
 
+var strHTML = ''
     var elBooks = document.querySelector('.books')
     for (var i = 0; i < gBooks.length; i++) {
         strHTML += `
@@ -21,12 +17,12 @@ function renderBooks() {
 
     </span>
     </td>
-    <td onclick="visibleTooltip('${gBooks[i].id}')" class="action-btns read tooltip">Read
+    <td onclick="visibleTooltip('${gBooks[i].id}')" class="action-btns read tooltip"><span data-trans="read">Read</span>
     <div class="tooltiptext book${gBooks[i].id} display">
     <div class="main-thing">
     <div class="top">
-        <div>Title:${gBooks[i].title}</div>
-        <div>Price:${gBooks[i].price}</div>
+        <div><span data-trans="title">Title:</span><span>${gBooks[i].title}</span></div>
+        <div><span data-trans="price">Price:</span><span>${gBooks[i].price}</span></div>
     </div>
     <div class="center">
     <div>${gBooks[i].img}</div>
@@ -35,14 +31,14 @@ function renderBooks() {
     </div>
 
     <div class="bottom">
-        <div class="rating">Rating:${gBooks[i].rating}</div>
-        <div>ID:${gBooks[i].id}</div>
+        <div class="rating"><span data-trans="rating">Rating:</span><span>${gBooks[i].rating}</span></div>
+        <div><span data-trans="id">ID:</span><span>${gBooks[i].id}</span></div>
     </div>
 </div>
     </div>
     </td>
-    <td class="action-btns update" onclick="onUpdateBook('${gBooks[i].id}', event)">Update</td>
-    <td class="action-btns delete" onclick="onRemoveBook('${gBooks[i].id}', event)">Delete</td>
+    <td data-trans="update" class="action-btns update" onclick="onUpdateBook('${gBooks[i].id}', event)">Update</td>
+    <td data-trans="delete" class="action-btns delete" onclick="onRemoveBook('${gBooks[i].id}', event)">Delete</td>
     </tr>
     `
     }
@@ -91,4 +87,14 @@ function readBook(bookId) {
     document.querySelector('.modal-image').innerHTML = `Image: ${book.img}`
     document.querySelector('.modal-rating').innerText = `Rating: ${book.rating}`
     document.querySelector('.modal-id').innerText = `ID: ${book.id}`
+}
+
+
+function onSetLang(lang) {
+    setLang(lang);
+    // TODO: if lang is hebrew add RTL class to document.body
+    if (lang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
+    renderBooks();
+    doTrans();
 }
