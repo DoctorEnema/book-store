@@ -86,3 +86,7 @@ function doTrans() {
 function setLang(lang) {
     gCurrLang = lang;
 }
+
+function formatCurrency(num) {
+    return new Intl.NumberFormat('he-IL', { style: 'currency', currency: 'ILS' }).format(num);
+}

@@ -2,10 +2,19 @@
     box-sizing: border-box;
 }
 
-body.rtl{
+body.rtl {
     direction: rtl;
 }
 
+.main {
+    display: flex;
+    /* background-color: aqua; */
+    flex-wrap: wrap;
+    /* height: 100vh; */
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
 
 table {
     background-color: lightslategrey;
@@ -99,7 +108,8 @@ h3 {
     display: flex;
     flex-direction: row;
     justify-self: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .center {
@@ -108,14 +118,16 @@ h3 {
 }
 
 .bottom {
-    flex-direction: row-reverse;
     display: flex;
-}
-.rating{
-    margin-left: 50px;
+    justify-content: space-evenly;
 }
 
 .book-modal {
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     position: absolute;
     display: flex;
     width: 400px;
@@ -127,6 +139,28 @@ h3 {
     flex-direction: column;
 }
 
+.close-modal {
+    justify-self: flex-end;
+    background-color: cadetblue;
+    padding-inline-start: 6px;
+    padding-top: 3px;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    cursor: pointer;
+    background-color: coral;
+}
+
+.top-info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .book-modal img {
     width: 150px;
     height: 150px;
@@ -134,4 +168,41 @@ h3 {
 
 .display {
     display: none
+}
+
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #f00;
+    transition: 0.2s;
+}
+
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 0px solid red;
+    border-bottom: 10px solid red;
+    transition: 0.2s;
+}
+
+.name-head {
+    justify-content: space-between;
+    /* display: flex; */
+}
+
+.name-head:hover{
+    cursor: pointer;
+}
+
+.price-head {
+    justify-content: space-between;
+}
+
+.price-head:hover{
+    cursor: pointer;
 }

@@ -1,44 +1,38 @@
 'use strict'
 
+function onInit() {
+    renderBooks()
+}
+
 function renderBooks() {
 
+    var books = getBooksToShow()
 var strHTML = ''
     var elBooks = document.querySelector('.books')
     for (var i = 0; i < gBooks.length; i++) {
         strHTML += `
     <tr>
-    <td>${gBooks[i].id}</td>
-    <td>${gBooks[i].title}</td>
+    <td>${books[i].id}</td>
+    <td>${books[i].title}</td>
     <td class="price-tag">
-    <span class="price-num">${gBooks[i].price}</span>
-    <span class="price-form hidden" <form onsubmit="onUpdateBook('${gBooks[i].id}',event)">
+    <span class="price-num">${formatCurrency(books[i].price)}</span>
+    
+    <span class="price-form hidden" <form onsubmit="onUpdateBook('${books[i].id}',event)">
+
     <input type="text" name="PRICE" placeholder="Book price" autocomplete="off" size="3"></input>
     </form>
 
     </span>
     </td>
-    <td onclick="visibleTooltip('${gBooks[i].id}')" class="action-btns read tooltip"><span data-trans="read">Read</span>
-    <div class="tooltiptext book${gBooks[i].id} display">
-    <div class="main-thing">
-    <div class="top">
-        <div><span data-trans="title">Title:</span><span>${gBooks[i].title}</span></div>
-        <div><span data-trans="price">Price:</span><span>${gBooks[i].price}</span></div>
-    </div>
-    <div class="center">
-    <div>${gBooks[i].img}</div>
-    <button>-</button>
-    <button>+</button>
-    </div>
 
-    <div class="bottom">
-        <div class="rating"><span data-trans="rating">Rating:</span><span>${gBooks[i].rating}</span></div>
-        <div><span data-trans="id">ID:</span><span>${gBooks[i].id}</span></div>
-    </div>
+    <td onclick="readBook('${books[i].id}')" class="action-btns read tooltip"><span data-trans="read">Read</span>
+    <div class="tooltiptext book${books[i].id} display">
+
 </div>
     </div>
     </td>
-    <td data-trans="update" class="action-btns update" onclick="onUpdateBook('${gBooks[i].id}', event)">Update</td>
-    <td data-trans="delete" class="action-btns delete" onclick="onRemoveBook('${gBooks[i].id}', event)">Delete</td>
+    <td data-trans="update" class="action-btns update" onclick="onUpdateBook('${books[i].id}', event)">Update</td>
+    <td data-trans="delete" class="action-btns delete" onclick="onRemoveBook('${books[i].id}', event)">Delete</td>
     </tr>
     `
     }
@@ -70,23 +64,20 @@ function onRemoveBook(bookId, ev) {
     renderBooks()
 }
 
-function visibleTooltip(bookId) {
-    // var idx = gBooks.findIndex(function (book) { return bookId === book.id })
-    var toggleTooltip = document.querySelector('.book' + bookId)
-    toggleTooltip.classList.toggle('display')
-}
-
-
 function readBook(bookId) {
     var book = gBooks.find(function (book) { return bookId === book.id })
 
     var elModal = document.querySelector('.book-modal')
-    // elModal.classList.toggle('visibility')
-    document.querySelector('.modal-title').innerText = `Title: ${book.title}`
-    document.querySelector('.modal-price').innerText = `Price: ${book.price}`
-    document.querySelector('.modal-image').innerHTML = `Image: ${book.img}`
-    document.querySelector('.modal-rating').innerText = `Rating: ${book.rating}`
-    document.querySelector('.modal-id').innerText = `ID: ${book.id}`
+    elModal.classList.remove('display')
+    document.querySelector('.modal-title').innerText = book.title
+    document.querySelector('.modal-price').innerText = formatCurrency(book.price)
+    document.querySelector('.modal-image').innerHTML = book.img
+    document.querySelector('.modal-rating').innerText = book.rating
+    document.querySelector('.modal-id').innerText = book.id
+}
+
+function onCloseModal(){
+    document.querySelector('.book-modal').classList.add('display')
 }
 
 
@@ -97,4 +88,19 @@ function onSetLang(lang) {
     else document.body.classList.remove('rtl')
     renderBooks();
     doTrans();
+}
+
+
+function onSetSortNames() {
+    document.querySelector('.price-triangle').classList.toggle('arrow-up')
+    document.querySelector('.name-triangle').classList.remove('arrow-up')
+    setSortName();
+    renderBooks()
+}
+
+function onSetSortPrice() {
+    document.querySelector('.name-triangle').classList.toggle('arrow-up')
+    document.querySelector('.price-triangle').classList.remove('arrow-up')
+    setSortPrice();
+    renderBooks()
 }

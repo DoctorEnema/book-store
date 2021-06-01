@@ -12,28 +12,35 @@
 
 <body onload="onInit()">
 
-    <h1 data-trans="store-title" class="store-title">Booksus</h1>
-    <select onchange="onSetLang(this.value)">
-        <option value="en">English</option>
-        <option value="he">עברית</option>
-    </select>
-
     <div class="main">
+
+        <h1 data-trans="store-title" class="store-title">Booksus</h1>
+        <select onchange="onSetLang(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
 
         <form onsubmit="onAddBook(event)">
             <div class="add-book">
                 <h3 data-trans="add">Add a Book</h3>
-                <input data-trans="title-placeholder" type="text" name="TITLE" placeholder="Book title" autocomplete="off">
-                <input data-trans="price-placeholder" type="text" name="PRICE" placeholder="Book price" autocomplete="off">
+                <input data-trans="title-placeholder" type="text" name="TITLE" placeholder="Book title"
+                    autocomplete="off">
+                <input data-trans="price-placeholder" type="text" name="PRICE" placeholder="Book price"
+                    autocomplete="off">
                 <button data-trans="add">Add Book</button>
             </div>
         </form>
-        <button onclick="testing()">Toggle</button>
         <table>
             <thead>
                 <th data-trans="id">ID</th>
-                <th data-trans="title">Title</th>
-                <th data-trans="price">Price</th>
+                <th onclick="onSetSortNames()" class="name-head">
+                    <span data-trans="title">Title</span>
+                    <div class="arrow-down price-triangle"></div>
+                </th>
+                <th onclick="onSetSortPrice()" class="price-head">
+                    <span data-trans="price">Price</span>
+                    <div class="arrow-down name-triangle"></div>
+                </th>
                 <th data-trans="actions" colspan="3">Actions</th>
             </thead>
             <tbody class="books">
@@ -46,30 +53,32 @@
 
         </table>
 
-        <!-- <div class="book-modal">
+        <div class="book-modal display">
             <div class="top">
-                <div class="modal-title"></div>
-                <div class="modal-price"></div>
+                <div class="top-info">
+                    <div><span data-trans="title">Title</span> <span class="modal-title">WAWAWA</span></div>
+                    <div><span data-trans="price">Price</span> <span class="modal-price"></span></div>
+                </div>
+                <div class="close-modal" onclick="onCloseModal()">X</div>
             </div>
             <div class="center">
-                <div class="modal-image"></div>
+                <div class="modal-image"><img src="img/augustus.png"></div>
             </div>
             <div class="bottom">
-                <div class="modal-rating"></div>
-                <div class="modal-id"></div>
+                <button>-</button>
+                <div><span data-trans="rating">Rating</span> <span class="modal-rating"></div>
+                <button>+</button>
+                <div><span data-trans="id">ID</span> <span class="modal-id"></div>
             </div>
         </div>
 
-    </div> -->
+    </div>
 
 
-
-
-
-        <script src="js/services/i18n-services.js"></script>
-        <script src="js/services/storage-service.js"></script>
-        <script src="js/services/book-service.js"></script>
-        <script src="js/main.js"></script>
+    <script src="js/services/i18n-services.js"></script>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/book-service.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
