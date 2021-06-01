@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+}
+
+table {
+    background-color: lightslategrey;
+}
+
+th {
+    background-color: lightgrey;
+    padding: 5px;
+}
+
+td {
+    background-color: mistyrose;
+    padding: 10px;
+    width: 80px;
+    height: 40px;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.action-btns {
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.delete {
+    background-color: orangered;
+}
+
+.update {
+    background-color: palevioletred;
+}
+
+.read {
+    background-color: plum;
+}
+
+.add-book {
+    text-align: center;
+    background-color: plum;
+    width: 400px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+h3 {
+    margin: 0
+}
+
+.price-tag {
+    width: 50px;
+}
+
+.hidden {
+    display: none;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    padding: 10px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 353%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.main-thing {
+    display: flex;
+    width: 200px;
+    height: 150px;
+    background-color: plum;
+    border-radius: 15px;
+    /* align-items: center; */
+    justify-content: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-self: flex-start;
+    justify-content: space-evenly;
+}
+
+.center {
+    align-self: center;
+    justify-self: center;
+}
+
+.bottom {
+    flex-direction: row-reverse;
+    display: flex;
+}
+.rating{
+    margin-left: 50px;
+}
+
+.book-modal {
+    position: absolute;
+    display: flex;
+    width: 400px;
+    height: 250px;
+    background-color: plum;
+    border-radius: 15px;
+    justify-content: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.book-modal img {
+    width: 150px;
+    height: 150px;
+}
+
+.display {
+    display: none
+}
